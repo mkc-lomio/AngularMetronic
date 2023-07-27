@@ -1,0 +1,61 @@
+/* NOTE: DIAGRAM FLOW
+ - START  
+ - Trigger (button click) 
+ - Action Sent Http Request (POST) 
+ - END
+*/
+[
+   {
+      "name":"wedmarius.app",
+      "workflowCoreJson": {
+         "Id":"Home",
+         "Version":1,
+         "Steps":[
+            {
+               "Id":"CreateGeneralInformation",
+               "StepType":"xamun.app.Domain.Service.Workflow.HTTP.SendHttpRequestStep, xamun.app.Domain",
+               "Inputs":{
+                  "SendHttpRequestStepInputs":"data.ParamSendHttpRequestStepInputs"
+               }
+            }
+         ]
+      },
+      "workflowObjectParamJson": {
+         "paramSendHttpRequestStepInputs":[
+            {
+               "stepActionId":"CreateGeneralInformation",
+               "Url":"https://wedmariusapp-vigan-sandbox.azurewebsites.net/service/api/GeneralInformation",
+               "Method":"POST",
+               "Content":{
+                  "organizationName":"string",
+                  "organizationDescription":"string",
+                  "dateEstablished":"string",
+                  "numberOfEmployee":"string",
+                  "corporateWebsiteURL":"string",
+                  "mailingAddress":"string",
+                  "officerFirstName":"string",
+                  "officerLastName":"string",
+                  "state":"string",
+                  "statePrincipalLocation":"string",
+                  "officerTelephone":"string",
+                  "officerEmail":"string",
+                  "city":"string",
+                  "zipCode":"string"
+               },
+               "ContentType":"application/json",
+               "Authorization":"Bearer Token",
+               "AuthorizationKey":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4RDRGRDg0ODVGRTRDN0ZDNDA4NjAwMzQ4OTQzMzEyIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2ODQ0NzM2OTcsImV4cCI6MTY4NDQ3NzI5NywiaXNzIjoiaHR0cHM6Ly93ZWRtYXJpdXNhcHAtdmlnYW4tc2FuZGJveC1pZC5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6IndlZG1hcml1cy5hcHAiLCJjbGllbnRfaWQiOiJYYW11bldvcmtmbG93Iiwic3ViIjoiNDUwNWRiYjItY2JlNy00YjgwLWE1MWUtYjM3MDhjOWQxZGNiIiwiYXV0aF90aW1lIjoxNjg0NDM4MDE4LCJpZHAiOiJsb2NhbCIsIm5hbWUiOiJhZG1pbiIsInJvbGUiOlsiQ2F0YWx5c3RBZG1pbiIsIkFwcGxpY2F0aW9uVXNlciIsIkFkbWluaXN0cmF0b3IiXSwianRpIjoiMkMwQkExRUY1ODZFMzgyOTI1MjMzOUVBMEYzNzQwQzMiLCJzaWQiOiJFMDc0MDlGRkU2RkM4MTI1OUUwRkY0ODgxMjhFQjlDRCIsImlhdCI6MTY4NDQ3MzY5Nywic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsIkJsYXN0QXNpYUNhdGFseXN0X2FwaSJdLCJhbXIiOlsicHdkIl19.m31g-SOWh7A7cY1CYe67qsKXW-9dgO01m9wHuTix43E5Pi8irwEDlQL7hUACMU8Xa49tclYnjG5WydMIpxQFpxEFo86J7be31IfmIiY0Ktck2MfuyEBZGYTZrYyrt3cPbHHmL8g4q9lz-0V1pu27JIp1pTDia5nJniFZJmghvs3GSWDzK3UfCXTpeL-QZuk0qcs1PFWwrCjO4TDz_FN1Uz59gSms3pY52uWflodXP0U2HG5GiXSDVYATGP5oihYnd7J69z4jYZaqCbJzDByKnFnUiKNICLn9M78hpI0AIbKZWbr81WtKZMZRy75asS1ChiBEWOJMIVvvcRkN-xrT4Q",
+               "RequestHeaders":null
+            }
+         ],
+         "paramSendEmailStepInputs":[
+            
+         ]
+      }, 
+      "moduleName":"Home",
+      "isDeleted":false,
+      "applicationWorkflowId":26,
+      "id":170,
+      "rowVersion":"AAAAAAAAZ+8="
+   }
+]

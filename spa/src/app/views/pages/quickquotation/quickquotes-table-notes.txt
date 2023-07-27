@@ -1,0 +1,104 @@
+=> Quotes
+
+ HTML
+ (click)="createQuotation()"
+  
+ 
+ TS
+ 
+ --   processWorkflow(workflowData) method
+    this.data = JSON.parse(data.workflowResult);
+      console.log(this.data);
+
+-- VARIABLE
+ columns: string[] = [
+    'organizationName',
+    'organizationDescription',
+    'dateEstablished',
+    'numberOfEmployee',
+    'action',
+  ];
+  
+  private router: Router
+
+   createQuotation(): void {
+    this.router.navigate(['/quickquotation']);
+  }
+
+  
+=> QuickQuotation
+private router: Router
+
+    this.router.navigate(['/quotes']);
+
+====================
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+//const API_URL = 'https://reqres.in';
+const INTERCEPTOR_SKIP_HEADER = new HttpHeaders({
+  'X-Skip-Interceptor': ''
+});
+
+const API_URL = 'https://xamunapp.azurewebsites.net/service';
+      
+      @Injectable({
+  providedIn: 'root'
+})
+
+export class QuickQuotationService {
+  
+  constructor(private http: HttpClient) { }
+
+  private getAPIEndpoint(baseURL: string, queryParameter?: any) {
+    switch (baseURL) {
+        case 'POST-ProcessWorkflow': return `${API_URL}/api/ExecuteWorkflowAsync/ProcessWorkflow`;
+        case 'GET-WorkflowByNameAndModuleName': return `${API_URL}/api/WorkflowTeAsync/GetWorkflowByNameAndModuleName/${queryParameter.workflowName}/${queryParameter.moduleName}`;
+      case "GET-Users": return `${API_URL}/api/users`
+      case "POST-Users": return `${API_URL}/api/users`
+      case "PUT-Users": return `${API_URL}/api/users/${queryParameter.id}`
+      default: return "";
+    }
+  }
+
+  get(): Observable<any> {
+    let url = this.getAPIEndpoint('GET-Users');
+    return this.http.get(url);
+  }
+
+  create(data: any): Observable<any> {
+    let url = this.getAPIEndpoint('POST-Users');
+    return this.http.post(url, data);
+  }
+  
+  update(id: any, data: any): Observable<any> {
+    let queryParameter = { id: id }
+    let url = this.getAPIEndpoint('PUT-Users', queryParameter);
+    return this.http.put(url, data);
+  }
+
+
+          
+processWorkflow(data: any): Observable<any> {
+  let url = this.getAPIEndpoint('POST-ProcessWorkflow');
+  return this.http.post(url, data, {headers: INTERCEPTOR_SKIP_HEADER});
+} 
+getWorkflowByNameAndModuleName(workflowName: string, moduleName: string): Observable<any> {
+  let queryParameter = { workflowName: workflowName, moduleName:  moduleName};
+  let url = this.getAPIEndpoint('GET-WorkflowByNameAndModuleName', queryParameter);
+  return this.http.get(url, {headers: INTERCEPTOR_SKIP_HEADER});
+}
+        }
+=====
+
+setCardMargin(index){
+    return (index * 60) + 'px';
+}
+
+2. HTML
+
+Manual:
+2.1 
+ *ngFor="let x of data; let i = index;" [style.margin-top]="setCardMargin(i)"
