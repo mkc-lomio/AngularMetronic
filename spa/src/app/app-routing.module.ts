@@ -9,8 +9,7 @@ import { AuthGuard } from './core/auth';
 
 const routes: Routes = [
 	{path: 'auth', loadChildren: () => import('app/views/pages/auth/auth.module').then(m => m.AuthModule)},
-	{path: 'quickquotation', loadChildren: () => import('app/views/pages/quickquotation/quickquotation.module').then(m => m.QuickQuotationModule)},
-	{path: 'marius', loadChildren: () => import('app/views/pages/landingpage/landingpage.module').then(m => m.LandingPageModule)},
+
 	{
 		path: '',
 		component: BaseComponent,
